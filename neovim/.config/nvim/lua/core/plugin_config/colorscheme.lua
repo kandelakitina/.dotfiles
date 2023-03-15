@@ -15,5 +15,5 @@ if not setup then
   return
 end
 
-require("kanagawa").setup()
+-- require("kanagawa").setup()
 vim.cmd("colorscheme kanagawa")

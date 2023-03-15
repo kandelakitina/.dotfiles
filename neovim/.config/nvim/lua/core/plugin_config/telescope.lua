@@ -30,7 +30,7 @@ telescope.setup({
   },
 })
 
-telescope.load_extension("fzf")
+-- telescope.load_extension("fzf")
 
 -- General Telescope Bindings
 local builtin = require('telescope.builtin')
