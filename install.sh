@@ -8,6 +8,7 @@ nix-env -iA \
   nixpkgs.antibody \
   nixpkgs.git \
   nixpkgs.tmux \
+  nixpkgs.neovim \
   nixpkgs.helix \
   nixpkgs.stow \
   nixpkgs.yarn \
@@ -15,6 +16,8 @@ nix-env -iA \
   nixpkgs.ripgrep \
   nixpkgs.bat \
   nixpkgs.direnv \
+  nixpkgs.gh \
+  nixpkgs.lazygit \
 
 # add zsh to valid login shells
 command -v zsh | sudo tee -a /etc/shells

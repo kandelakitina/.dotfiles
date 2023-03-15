@@ -6,5 +6,5 @@ alias la='ls -AF'  #
 alias l='ls -CF'   #
 
 # soft
-alias vim='neovim'
+alias vim='nvim'
 alias lg='lazygit'
