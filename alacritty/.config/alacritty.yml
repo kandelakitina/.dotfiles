@@ -1,0 +1,7 @@
+font: 
+  normal: 
+    family: Ubuntu Mono
+  size: 16
+
+import:
+  - ~/.alacritty-colorscheme/themes/challenger_deep.yaml
