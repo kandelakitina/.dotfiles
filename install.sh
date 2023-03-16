@@ -18,6 +18,8 @@ nix-env -iA \
   nixpkgs.direnv \
   nixpkgs.gh \
   nixpkgs.lazygit \
+  nixpkgs.nodejs \
+  nixpkgs.gcc \
 
 # add zsh to valid login shells
 command -v zsh | sudo tee -a /etc/shells

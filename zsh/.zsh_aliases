@@ -5,6 +5,9 @@ alias ll='ls -alF' # all for all, l for details, F for \ symbols
 alias la='ls -AF'  #
 alias l='ls -CF'   #
 
+# manipulating files
+alias mkdir='mkdir -p'
+
 # soft
 alias vim='nvim'
 alias lg='lazygit'

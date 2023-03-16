@@ -15,5 +15,8 @@ source ~/.zsh_aliases
 # source visual config
 source ~/.zsh_visual
 
+# source configs
+source ~/.zsh_configs
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
