@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install nix and source nix from Determinate Systems
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 
@@ -10,27 +12,35 @@ nix-channel --update
 # Run nix daemon
 bash /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
-# install packages
-nix-env -iA \
-  nixpkgs.zsh \
-  nixpkgs.alacritty \
-  nixpkgs.antibody \
-  nixpkgs.git \
-  nixpkgs.tmux \
-  nixpkgs.neovim \
-  nixpkgs.helix \
-  nixpkgs.stow \
-  nixpkgs.yarn \
-  nixpkgs.fzf \
-  nixpkgs.ripgrep \
-  nixpkgs.bat \
-  nixpkgs.direnv \
-  nixpkgs.gh \
-  nixpkgs.lazygit \
-  nixpkgs.nodejs \
-  nixpkgs.gcc \
-  nixpkgs.fd \
-  nixpkgs.inotify-tools \
+# install packages via nix-env -iA
+packages=(
+  alacritty
+  antibody
+  bat
+  direnv
+  fd
+  fzf
+  gcc
+  gh
+  git
+  helix
+  inotify-tools
+  lazygit
+  neovim
+  nodejs
+  ripgrep
+  stow
+  tmux
+  yarn
+  zsh
+)
+
+for pkg in "${packages[@]}"; do
+  nix-env -iA nixpkgs.$pkg
+done
+
+# Run script that watches and auto-stows every folder in .dotfiles/ 
+bash ~/.dotfiles/scripts/watch_dotfiles.sh
 
 # stow everything
 # stow zsh
@@ -52,10 +62,7 @@ antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
 
-# Run inotify-tools to watch dotfiles
-bash ~/.dotfiles/scripts/watch_dotfiles.sh
-
-# Install alacritty themes switcher
+# Install alacritty themes switcher (use `at` in CLI to change)
 npx alacritty-themes
 
 # Login to github
