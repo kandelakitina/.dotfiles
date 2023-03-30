@@ -20,6 +20,7 @@ packages=(
   direnv
   fd
   fzf
+  fff
   gcc
   gh
   git
@@ -40,7 +41,7 @@ for pkg in "${packages[@]}"; do
 done
 
 # Run script that watches and auto-stows every folder in .dotfiles/ 
-bash ~/.dotfiles/scripts/watch_dotfiles.sh
+nohup bash ~/.dotfiles/scripts/watch_dotfiles.sh &>/dev/null &
 
 # stow everything
 # stow zsh
@@ -62,8 +63,15 @@ antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
 
+# Configure npm to install in ~/.npm-global, instead of nix folder
+mkdir -p ~/.npm-global
+mkdir -p ~/.npm-global/lib
+mkdir -p ~/.npm-global/bin
+npm config set prefix '~/.npm-global'
+export PATH=~/.npm-global/bin:$PATH
+
 # Install alacritty themes switcher (use `at` in CLI to change)
-npx alacritty-themes
+npm i -g alacritty-themes
 
 # Login to github
 gh auth login

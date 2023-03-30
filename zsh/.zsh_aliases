@@ -17,3 +17,10 @@ alias nvim-clean-cache='rm ~/.local/share/nvim/packer_compiled.lua && rm -rf ~/.
 
 # alacritty-themes switcher
 alias at='alacritty-themes'
+
+# fff file browser
+# Run 'fff' with 'f' or whatever you decide to name the function.
+f() {
+    fff "$@"
+    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+}

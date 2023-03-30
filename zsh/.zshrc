@@ -20,3 +20,6 @@ source ~/.zsh_configs
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Add ~/.npm-global/ to PATH
+export PATH=~/.npm-global/bin:$PATH
