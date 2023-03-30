@@ -17,7 +17,12 @@ else
   echo "Nix package manager is already installed."
 fi
 
-# install packages via nix-env -iA
+# Function to generate a random color
+random_color() {
+  echo -e "\033[38;5;$(shuf -i 1-255 -n 1)m"
+}
+
+# Install packages via nix-env -iA, but only if they are not already installed
 packages=(
   alacritty
   antibody
@@ -26,7 +31,7 @@ packages=(
   fd
   fzf
   fff
-  gcc
+  gcc-wrapper
   gh
   git
   helix
@@ -42,14 +47,20 @@ packages=(
 )
 
 for pkg in "${packages[@]}"; do
-  nix-env -iA nixpkgs.$pkg
+  # Check if the package is already installed
+  color=$(random_color)
+  if nix-env -q "$pkg" > /dev/null; then
+    echo -e "${color}$pkg\033[0m is already installed."
+  else
+    echo -e "Installing ${color}$pkg\033[0m"
+    nix-env -iA nixpkgs.$pkg
+  fi
 done
 
 # Run script that watches and auto-stows every folder in .dotfiles/ 
 nohup bash ~/.dotfiles/scripts/watch_dotfiles.sh &>/dev/null &
 
 # stow everything
-# stow zsh
 # stow git
 # stow nvim
 # stow helix
