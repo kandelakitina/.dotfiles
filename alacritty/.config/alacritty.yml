@@ -1,7 +1,7 @@
 font: 
   normal: 
-    family: Ubuntu Mono
-  size: 16
+    family: UbuntuMono Nerd Font
+  size: 15
 
 import:
   - ~/.alacritty-colorscheme/themes/challenger_deep.yaml

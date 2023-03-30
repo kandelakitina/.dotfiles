@@ -22,6 +22,13 @@ nix-env -iA \
   nixpkgs.gcc \
   nixpkgs.fd \
 
+# stow everything
+stow zsh
+stow git
+stow nvim
+stow helix
+stow alacritty
+
 # add zsh to valid login shells
 command -v zsh | sudo tee -a /etc/shells
 
