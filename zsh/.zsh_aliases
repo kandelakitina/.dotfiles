@@ -14,3 +14,6 @@ alias lg='lazygit'
 
 # clean Nvim Cache
 alias nvim-clean-cache='rm ~/.local/share/nvim/packer_compiled.lua && rm -rf ~/.cache/nvim && rm -rf ~/.local/site/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.cache/nvim'
+
+# alacritty-themes switcher
+alias at='alacritty-themes'
