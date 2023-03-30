@@ -52,11 +52,11 @@ antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
 
-# Install alacritty themes switcher
-npm i -g alacritty-themes
-
 # Run inotify-tools to watch dotfiles
-bash "./scripts/watch_dotfiles.sh"
+bash ~/.dotfiles/scripts/watch_dotfiles.sh
+
+# Install alacritty themes switcher
+npx alacritty-themes
 
 # Login to github
 gh auth login
