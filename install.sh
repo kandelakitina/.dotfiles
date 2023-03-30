@@ -8,29 +8,29 @@ nix-channel --add https://nixos.org/channels/nixpkgs-unstable
 nix-channel --update
 
 # Run nix daemon
-. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+bash /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
 # install packages
 nix-env -iA \
-  nixpkgs.zsh \           # a powerful shell interface
-  nixpkgs.alacritty \     # GPU accelerated terminal emulator 
-  nixpkgs.antibody \      # a fast and flexible shell plugin manager
-  nixpkgs.git \           # distributed version control system
-  nixpkgs.tmux \          # terminal multiplexer for managing multiple sessions
-  nixpkgs.neovim \        # a modern, extensible text editor
-  nixpkgs.helix \         # a post-modern text editor
-  nixpkgs.stow \          # a symlink manager for organizing dotfiles
-  nixpkgs.yarn \          # a fast and reliable JavaScript package manager
-  nixpkgs.fzf \           # a general-purpose command-line fuzzy finder
-  nixpkgs.ripgrep \       # a fast and efficient search tool
-  nixpkgs.bat \           # a cat clone with syntax highlighting and Git integration
-  nixpkgs.direnv \        # an environment switcher for the shell
-  nixpkgs.gh \            # GitHub's official command line tool to login though web
-  nixpkgs.lazygit \       # a simple terminal UI for Git commands
-  nixpkgs.nodejs \        # a JavaScript runtime built on Chrome's V8 engine
-  nixpkgs.gcc \           # GNU Compiler Collection (C, C++, Objective-C, Fortran)
-  nixpkgs.fd \            # better find command
-  nixpkgs.inotify-tools \ # allows to auto-stow when .dotfiles are changed
+  nixpkgs.zsh \
+  nixpkgs.alacritty \
+  nixpkgs.antibody \
+  nixpkgs.git \
+  nixpkgs.tmux \
+  nixpkgs.neovim \
+  nixpkgs.helix \
+  nixpkgs.stow \
+  nixpkgs.yarn \
+  nixpkgs.fzf \
+  nixpkgs.ripgrep \
+  nixpkgs.bat \
+  nixpkgs.direnv \
+  nixpkgs.gh \
+  nixpkgs.lazygit \
+  nixpkgs.nodejs \
+  nixpkgs.gcc \
+  nixpkgs.fd \
+  nixpkgs.inotify-tools \
 
 # stow everything
 # stow zsh
