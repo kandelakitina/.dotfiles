@@ -1,5 +1,13 @@
 # Install nix and source nix from Determinate Systems
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
+# Force add nixpkgs channel to avoid errors
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+
+# Update nix channels' list
+nix-channel --update
+
+# Run nix daemon
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
 # install packages
