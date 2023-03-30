@@ -1,16 +1,21 @@
 #!/bin/bash
 
-# Install nix and source nix from Determinate Systems
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+# Check if nix is installed
+if ! command -v nix &> /dev/null; then
+  # Install nix and source nix from Determinate Systems
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 
-# Force add nixpkgs channel to avoid errors
-nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+  # Force add nixpkgs channel to avoid errors
+  nix-channel --add https://nixos.org/channels/nixpkgs-unstable
 
-# Update nix channels' list
-nix-channel --update
+  # Update nix channels' list
+  nix-channel --update
 
-# Run nix daemon
-bash /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+  # Run nix daemon
+  bash /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+else
+  echo "Nix package manager is already installed."
+fi
 
 # install packages via nix-env -iA
 packages=(
