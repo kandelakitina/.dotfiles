@@ -44,3 +44,6 @@ cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https:
 
 # Install alacritty themes switcher
 npm i -g alacritty-themes
+
+# Login to github
+gh auth login
