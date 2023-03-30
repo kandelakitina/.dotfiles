@@ -4,30 +4,32 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 
 # install packages
 nix-env -iA \
-  nixpkgs.zsh \
-  nixpkgs.antibody \
-  nixpkgs.git \
-  nixpkgs.tmux \
-  nixpkgs.neovim \
-  nixpkgs.helix \
-  nixpkgs.stow \
-  nixpkgs.yarn \
-  nixpkgs.fzf \
-  nixpkgs.ripgrep \
-  nixpkgs.bat \
-  nixpkgs.direnv \
-  nixpkgs.gh \
-  nixpkgs.lazygit \
-  nixpkgs.nodejs \
-  nixpkgs.gcc \
-  nixpkgs.fd \
+  nixpkgs.zsh \           # a powerful shell interface
+  nixpkgs.alacritty \     # GPU accelerated terminal emulator 
+  nixpkgs.antibody \      # a fast and flexible shell plugin manager
+  nixpkgs.git \           # distributed version control system
+  nixpkgs.tmux \          # terminal multiplexer for managing multiple sessions
+  nixpkgs.neovim \        # a modern, extensible text editor
+  nixpkgs.helix \         # a post-modern text editor
+  nixpkgs.stow \          # a symlink manager for organizing dotfiles
+  nixpkgs.yarn \          # a fast and reliable JavaScript package manager
+  nixpkgs.fzf \           # a general-purpose command-line fuzzy finder
+  nixpkgs.ripgrep \       # a fast and efficient search tool
+  nixpkgs.bat \           # a cat clone with syntax highlighting and Git integration
+  nixpkgs.direnv \        # an environment switcher for the shell
+  nixpkgs.gh \            # GitHub's official command line tool to login though web
+  nixpkgs.lazygit \       # a simple terminal UI for Git commands
+  nixpkgs.nodejs \        # a JavaScript runtime built on Chrome's V8 engine
+  nixpkgs.gcc \           # GNU Compiler Collection (C, C++, Objective-C, Fortran)
+  nixpkgs.fd \            # better find command
+  nixpkgs.inotify-tools \ # allows to auto-stow when .dotfiles are changed
 
 # stow everything
-stow zsh
-stow git
-stow nvim
-stow helix
-stow alacritty
+# stow zsh
+# stow git
+# stow nvim
+# stow helix
+# stow alacritty
 
 # add zsh to valid login shells
 command -v zsh | sudo tee -a /etc/shells
@@ -44,6 +46,9 @@ cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https:
 
 # Install alacritty themes switcher
 npm i -g alacritty-themes
+
+# Run inotify-tools to watch dotfiles
+bash "./scripts/watch_dotfiles.sh"
 
 # Login to github
 gh auth login
