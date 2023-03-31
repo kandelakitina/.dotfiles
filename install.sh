@@ -119,7 +119,7 @@ if [ "$current_shell" != "$fish_path" ]; then
     fi
 
     # use fish as the default shell
-    sudo chsh -s "$fish_path" $user
+    sudo chsh -s "$fish_path" $USER
     echo "fish is now the default shell."
 else
     echo "fish is already the default shell."
