@@ -20,8 +20,8 @@ return require("packer").startup(function(use)
 	-- use 'ellisonleao/gruvbox.nvim'
 	use("rebelot/kanagawa.nvim")
 
-  -- remove background
-  use("xiyaowong/transparent.nvim")
+	-- remove background
+	use("xiyaowong/transparent.nvim")
 
 	-- File explorer
 	use({
@@ -41,20 +41,20 @@ return require("packer").startup(function(use)
 		tag = "v1.*",
 	})
 
-	-- Auto resize windows
-	use({
-		"anuvyklack/windows.nvim",
-		requires = {
-
-			"anuvyklack/animation.nvim",
-		},
-		config = function()
-			vim.o.winwidth = 10
-			vim.o.winminwidth = 10
-			vim.o.equalalways = false
-			require("windows").setup()
-		end,
-	})
+	-- -- Auto resize windows
+	-- use({
+	-- 	"anuvyklack/windows.nvim",
+	-- 	requires = {
+	--
+	-- 		"anuvyklack/animation.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		vim.o.winwidth = 10
+	-- 		vim.o.winminwidth = 10
+	-- 		vim.o.equalalways = false
+	-- 		require("windows").setup()
+	-- 	end,
+	-- })
 
 	-- Git
 	use("kdheepak/lazygit.nvim")
@@ -148,7 +148,8 @@ return require("packer").startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("jayp0521/mason-null-ls.nvim")
 	use("nvim-treesitter/nvim-treesitter")
-	use({ -- Additional text objects via treesitter
+	use({
+		-- Additional text objects via treesitter
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
 	})

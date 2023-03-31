@@ -60,6 +60,7 @@ packages=(
   neovim
   nodejs
   ripgrep
+  starship
   stow
   tmux
   yarn
@@ -196,11 +197,13 @@ fi
 # =================
 
 # Check if the user is already logged into GitHub
-github_token=$(git config --global --get github.oauth-token)
+gh auth status > /dev/null 2>&1
+auth_status=$?
 
-if [ -z "$github_token" ]; then
+if [ $auth_status -ne 0 ]; then
     echo -e "\nNot logged into GitHub. Running 'gh auth login'..."
     gh auth login
 else
     echo -e "\nAlready logged into GitHub."
 fi
+
