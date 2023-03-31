@@ -65,6 +65,7 @@ packages=(
   [ripgrep]=ripgrep
   [starship]=starship
   [stow]=stow
+  [trashy]=trashy
   [tmux]=tmux
   [yarn]=yarn
   [xmodmap]=xorg.xmodmap
