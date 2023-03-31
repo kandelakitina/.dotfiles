@@ -17,3 +17,12 @@ alias sfc='source ~/.config/fish/config.fish'
 
 # Edit fish config
 alias efc='$EDITOR ~/.config/fish/config.fish'
+
+# NPM
+set -gx PATH ~/.npm-global/bin $PATH
+
+# Alacritty-themes
+alias at='alacritty-themes'
+
+# Lazygit
+alias lg='lazygit'
