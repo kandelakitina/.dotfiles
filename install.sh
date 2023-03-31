@@ -56,6 +56,7 @@ packages=(
   [gcc-wrapper]=gcc-wrapper
   [gh]=gh
   [git]=git
+  [exa]=exa
   [helix]=helix
   [inotify-tools]=inotify-tools
   [lazygit]=lazygit

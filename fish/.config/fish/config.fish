@@ -8,6 +8,12 @@ function f
     cd (cat $XDG_CACHE_HOME/fff/.fff_d)
 end
 
+# Exa (ls replacement)
+alias l='exa -F -s type'
+alias la='exa -F -a'
+alias ll='exa -F -l --no-user -s type'
+alias lt='exa --tree'
+
 # Helix
 set -gx EDITOR hx
 set -gx VISUAL $EDITOR
