@@ -41,44 +41,48 @@ rainbow_colors=(
 
 color_index=0
 
-# Install packages via nix-env -iA, but only if they are not already installed
+# Associative array with package names as keys and attribute paths as values
+declare -A packages
+
 packages=(
-  alacritty
-  antibody
-  bat
-  direnv
-  fd
-  fish
-  fzf
-  fff
-  gcc-wrapper
-  gh
-  git
-  helix
-  inotify-tools
-  lazygit
-  neovim
-  nodejs
-  ripgrep
-  starship
-  stow
-  tmux
-  yarn
-  xorg.xmodmap
+  [alacritty]=alacritty
+  [antibody]=antibody
+  [bat]=bat
+  [direnv]=direnv
+  [fd]=fd
+  [fish]=fish
+  [fzf]=fzf
+  [fff]=fff
+  [gcc-wrapper]=gcc-wrapper
+  [gh]=gh
+  [git]=git
+  [helix]=helix
+  [inotify-tools]=inotify-tools
+  [lazygit]=lazygit
+  [neovim]=neovim
+  [nodejs]=nodejs
+  [ripgrep]=ripgrep
+  [starship]=starship
+  [stow]=stow
+  [tmux]=tmux
+  [yarn]=yarn
+  [xmodmap]=xorg.xmodmap
 )
 
-# Installing packages if they are not installed
-echo -e "\nInstalling Nix packages..."
+# ... (keep the rest of the script as is)
 
-for pkg in "${packages[@]}"; do
+# Installing packages if they are not installed
+for pkg_name in "${!packages[@]}"; do
+  pkg_attr_path="${packages[$pkg_name]}"
 
   # Check if the package is already installed
   color=${rainbow_colors[$color_index]}
-  if nix-env -q "$pkg" > /dev/null; then
-    echo -e "${color}$pkg\033[0m is already installed."
+  nix-env -q "$pkg_name" > /dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    echo -e "${color}$pkg_name\033[0m is already installed."
   else
-    echo -e "Installing ${color}$pkg\033[0m"
-    nix-env -iA nixpkgs.$pkg
+    echo -e "Installing ${color}$pkg_name\033[0m"
+    nix-env -iA nixpkgs.$pkg_attr_path
   fi
 
   # Update the color index, cycling through the rainbow colors
