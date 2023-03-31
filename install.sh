@@ -17,10 +17,20 @@ else
   echo "Nix package manager is already installed."
 fi
 
-# Function to generate a random color
-random_color() {
-  echo -e "\033[38;5;$(shuf -i 1-255 -n 1)m"
-}
+#!/bin/bash
+
+# Array of rainbow colors (in ANSI escape codes)
+rainbow_colors=(
+  "\033[38;5;196m" # Red
+  "\033[38;5;202m" # Orange
+  "\033[38;5;226m" # Yellow
+  "\033[38;5;46m"  # Green
+  "\033[38;5;21m"  # Blue
+  "\033[38;5;93m"  # Indigo
+  "\033[38;5;201m" # Violet
+)
+
+color_index=0
 
 # Install packages via nix-env -iA, but only if they are not already installed
 packages=(
@@ -48,13 +58,16 @@ packages=(
 
 for pkg in "${packages[@]}"; do
   # Check if the package is already installed
-  color=$(random_color)
+  color=${rainbow_colors[$color_index]}
   if nix-env -q "$pkg" > /dev/null; then
-    echo -e "${color}$pkg\033[0m is already installed."
+    echo -e "${color}$pkg\033[0m is already installed, skipping."
   else
     echo -e "Installing ${color}$pkg\033[0m"
     nix-env -iA nixpkgs.$pkg
   fi
+
+  # Update the color index, cycling through the rainbow colors
+  color_index=$(( (color_index + 1) % ${#rainbow_colors[@]} ))
 done
 
 # Run script that watches and auto-stows every folder in .dotfiles/ 
