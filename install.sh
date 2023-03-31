@@ -17,8 +17,6 @@ else
   echo "Nix package manager is already installed."
 fi
 
-#!/bin/bash
-
 # Array of rainbow colors (in ANSI escape codes)
 rainbow_colors=(
   "\033[38;5;196m" # Red
@@ -60,7 +58,7 @@ for pkg in "${packages[@]}"; do
   # Check if the package is already installed
   color=${rainbow_colors[$color_index]}
   if nix-env -q "$pkg" > /dev/null; then
-    echo -e "${color}$pkg\033[0m is already installed, skipping."
+    echo -e "${color}$pkg\033[0m is already installed."
   else
     echo -e "Installing ${color}$pkg\033[0m"
     nix-env -iA nixpkgs.$pkg
@@ -73,7 +71,6 @@ done
 # Run script that watches and auto-stows every folder in .dotfiles/ 
 nohup bash ~/.dotfiles/scripts/watch_dotfiles.sh &>/dev/null &
 
-# stow everything
 # stow git
 # stow nvim
 # stow helix
