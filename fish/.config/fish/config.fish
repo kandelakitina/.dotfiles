@@ -61,12 +61,12 @@ function dclear
 end
 
 # Fisher
-# Check if Fisher is installed and if the loop prevention variable is not set
-if not command -q fisher; and not set -q FISHER_LOOP_PREVENTION
+# Check if Fisher is installed and the loop prevention variable is not set
+if not set -q FISHER_LOOP_PREVENTION; and not test -f $HOME/.config/fish/functions/fisher.fish
     # Set a temporary loop prevention variable
     set -gx FISHER_LOOP_PREVENTION 1
 
-    # If Fisher is not installed, run the installation script
+    # Install Fisher
     echo "Installing Fisher plugin manager for fish shell"
     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
     echo "Fisher installed successfully."
