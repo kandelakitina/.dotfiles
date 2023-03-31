@@ -64,6 +64,7 @@ packages=(
   stow
   tmux
   yarn
+  xorg.xmodmap
 )
 
 # Installing packages if they are not installed

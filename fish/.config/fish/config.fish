@@ -26,3 +26,8 @@ alias at='alacritty-themes'
 
 # Lazygit
 alias lg='lazygit'
+
+# Xmodmap (bind Caps lock to Escape)
+if test -e ~/.Xmodmap
+    xmodmap ~/.Xmodmap
+end
