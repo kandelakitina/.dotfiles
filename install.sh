@@ -102,27 +102,27 @@ nohup bash ~/.dotfiles/scripts/watch_dotfiles.sh &>/dev/null &
 # Fish
 # =================
 
-# Get the current default shell
-current_shell=$(getent passwd $USER | cut -d: -f7)
+# get the current default shell
+current_shell=$(getent passwd $user | cut -d: -f7)
 
-# Get the Fish shell path
+# get the fish shell path
 fish_path=$(which fish)
 
-# Check if Fish is already the default shell
+# check if fish is already the default shell
 if [ "$current_shell" != "$fish_path" ]; then
-    echo "Setting Fish as the default shell..."
+    echo "setting fish as the default shell..."
 
-    # Add Fish to valid login shells if it's not there already
+    # add fish to valid login shells if it's not there already
     if ! grep -q "^$fish_path$" /etc/shells; then
-        echo "Adding Fish to valid login shells..."
+        echo "adding fish to valid login shells..."
         command -v fish | sudo tee -a /etc/shells
     fi
 
-    # Use Fish as the default shell
-    sudo chsh -s "$fish_path" $USER
-    echo "Fish is now the default shell."
+    # use fish as the default shell
+    sudo chsh -s "$fish_path" $user
+    echo "fish is now the default shell."
 else
-    echo "Fish is already the default shell."
+    echo "fish is already the default shell."
 fi
 
 
