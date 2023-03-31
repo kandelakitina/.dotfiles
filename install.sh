@@ -72,7 +72,7 @@ packages=(
 # ... (keep the rest of the script as is)
 
 # Installing packages if they are not installed
-for pkg_name in "${!packages[@]}"; do
+printf "%s\n" "${!packages[@]}" | sort | while read -r pkg_name; do
   pkg_attr_path="${packages[$pkg_name]}"
 
   # Check if the package is already installed
