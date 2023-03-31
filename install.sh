@@ -8,7 +8,7 @@
 # Check if nix is installed
 if ! command -v nix &> /dev/null; then
   # Install nix and source nix from Determinate Systems
-  echo "Nix package manager not found. Installing..."
+  echo -e "\nNix package manager not found. Installing..."
   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 
   # Force add nixpkgs channel to avoid errors
@@ -20,7 +20,7 @@ if ! command -v nix &> /dev/null; then
   # Run nix daemon
   bash /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 else
-  echo "Nix package manager is already installed."
+  echo -e "\nNix package manager is already installed."
 fi
 
 
@@ -66,7 +66,7 @@ packages=(
 )
 
 # Installing packages if they are not installed
-echo "Installing Nix packages..."
+echo -e "\nInstalling Nix packages..."
 
 for pkg in "${packages[@]}"; do
 
@@ -89,7 +89,7 @@ done
 # =================
 
 # Run script that watches and auto-stows every folder in .dotfiles/ 
-echo "Running script to automatically stow config files"
+echo -e "\nRunning script to automatically stow config files"
 nohup bash ~/.dotfiles/scripts/watch_dotfiles.sh &>/dev/null &
 
 # stow git
@@ -102,27 +102,27 @@ nohup bash ~/.dotfiles/scripts/watch_dotfiles.sh &>/dev/null &
 # Fish
 # =================
 
-# get the current default shell
-current_shell=$(getent passwd $user | cut -d: -f7)
+# Get the current default shell
+current_shell="$SHELL"
 
-# get the fish shell path
+# Get the Fish shell path
 fish_path=$(which fish)
 
-# check if fish is already the default shell
+# Check if Fish is already the default shell
 if [ "$current_shell" != "$fish_path" ]; then
-    echo "setting fish as the default shell..."
+    echo -e "\nSetting Fish as the default shell..."
 
-    # add fish to valid login shells if it's not there already
+    # Add Fish to valid login shells if it's not there already
     if ! grep -q "^$fish_path$" /etc/shells; then
-        echo "adding fish to valid login shells..."
+        echo -e "\nAdding Fish to valid login shells..."
         command -v fish | sudo tee -a /etc/shells
     fi
 
-    # use fish as the default shell
-    sudo chsh -s "$fish_path" $USER
-    echo "fish is now the default shell."
+    # Use Fish as the default shell
+    chsh -s "$fish_path"
+    echo -e "\nFish is now the default shell."
 else
-    echo "fish is already the default shell."
+    echo -e "\nFish is already the default shell."
 fi
 
 
@@ -136,7 +136,7 @@ font_url="https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/UbuntuM
 
 # Check if the font is already installed
 if [ ! -f "${font_directory}/${font_file}" ]; then
-    echo "Installing Ubuntu Mono Nerd Font Complete..."
+    echo -e "\nInstalling Ubuntu Mono Nerd Font Complete..."
 
     # Download and install the font
     mkdir -p "$font_directory"
@@ -145,9 +145,9 @@ if [ ! -f "${font_directory}/${font_file}" ]; then
     # Update the font cache
     fc-cache -f -v
 
-    echo "Ubuntu Mono Nerd Font Complete installed."
+    echo -e "\nUbuntu Mono Nerd Font Complete installed."
 else
-    echo "Ubuntu Mono Nerd Font Complete is already installed."
+    echo -e "\nUbuntu Mono Nerd Font Complete is already installed."
 fi
 
 
@@ -162,7 +162,7 @@ current_npm_prefix=$(npm config get prefix)
 
 # Run the script only if the desired NPM prefix is not set
 if [ "$current_npm_prefix" != "$desired_npm_prefix" ]; then
-    echo "Configuring NPM to use the desired prefix..."
+    echo -e "\nConfiguring NPM to use the desired prefix..."
 
     # Configure NPM to install in ~/.npm-global, instead of the default folder
     mkdir -p "$desired_npm_prefix"/{lib,bin}
@@ -170,9 +170,9 @@ if [ "$current_npm_prefix" != "$desired_npm_prefix" ]; then
 
     # Add the new NPM prefix to the PATH
     export PATH="$desired_npm_prefix/bin:$PATH"
-    echo "NPM configured to use the desired prefix."
+    echo -e "\nNPM configured to use the desired prefix."
 else
-    echo "NPM is already configured with the desired prefix."
+    echo -e "\nNPM is already configured with the desired prefix."
 fi
 
 # =================
@@ -181,14 +181,14 @@ fi
 
 # Check if alacritty-themes is already installed
 if ! command -v alacritty-themes &> /dev/null; then
-    echo "Installing alacritty-themes switcher..."
+    echo -e "\nInstalling alacritty-themes switcher..."
 
     # Install alacritty themes switcher
     npm i -g alacritty-themes
 
-    echo "alacritty-themes switcher installed. Use 'at' in CLI to change themes."
+    echo -e "\nalacritty-themes switcher installed. Use 'at' in CLI to change themes."
 else
-    echo "alacritty-themes switcher is already installed."
+    echo -e "\nalacritty-themes switcher is already installed."
 fi
 
 # =================
@@ -199,8 +199,8 @@ fi
 github_token=$(git config --global --get github.oauth-token)
 
 if [ -z "$github_token" ]; then
-    echo "Not logged into GitHub. Running 'gh auth login'..."
+    echo -e "\nNot logged into GitHub. Running 'gh auth login'..."
     gh auth login
 else
-    echo "Already logged into GitHub."
+    echo -e "\nAlready logged into GitHub."
 fi
