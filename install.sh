@@ -71,8 +71,6 @@ packages=(
   [xmodmap]=xorg.xmodmap
 )
 
-# ... (keep the rest of the script as is)
-
 # Installing packages if they are not installed
 printf "%s\n" "${!packages[@]}" | sort | while read -r pkg_name; do
   pkg_attr_path="${packages[$pkg_name]}"
@@ -90,7 +88,6 @@ printf "%s\n" "${!packages[@]}" | sort | while read -r pkg_name; do
   # Update the color index, cycling through the rainbow colors
   color_index=$(( (color_index + 1) % ${#rainbow_colors[@]} ))
 done
-
 
 # =================
 # Stow
