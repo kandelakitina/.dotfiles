@@ -5,6 +5,9 @@ alias ll='ls -alF' # all for all, l for details, F for \ symbols
 alias la='ls -AF'  #
 alias l='ls -CF'   #
 
+# source .zshrc
+alias s='source ~/.zshrc'
+
 # manipulating files
 alias mkdir='mkdir -p'
 
