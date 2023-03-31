@@ -8,11 +8,20 @@ function f
     cd (cat $XDG_CACHE_HOME/fff/.fff_d)
 end
 
-# Exa (ls replacement)
+# File browsing
 alias l='exa -F -s type'
 alias la='exa -F -a'
 alias ll='exa -F -l --no-user -s type'
 alias lt='exa --tree'
+alias mkdir='mkdir -p'
+
+function folder
+  mkdir -p $argv[1]
+  cd $argv[1]
+end
+
+# Clean NVIM Cach
+alias nvim-clean-cache='rm ~/.local/share/nvim/packer_compiled.lua && rm -rf ~/.cache/nvim && rm -rf ~/.local/site/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.cache/nvim'
 
 # Helix
 set -gx EDITOR hx
