@@ -1,8 +1,14 @@
 #!/bin/bash
 
+
+# =================
+# Nix Package manager
+# =================
+
 # Check if nix is installed
 if ! command -v nix &> /dev/null; then
   # Install nix and source nix from Determinate Systems
+  echo "Nix package manager not found. Installing..."
   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 
   # Force add nixpkgs channel to avoid errors
@@ -16,6 +22,11 @@ if ! command -v nix &> /dev/null; then
 else
   echo "Nix package manager is already installed."
 fi
+
+
+# =================
+# Nix packages
+# =================
 
 # Array of rainbow colors (in ANSI escape codes)
 rainbow_colors=(
@@ -37,6 +48,7 @@ packages=(
   bat
   direnv
   fd
+  fish
   fzf
   fff
   gcc-wrapper
@@ -51,10 +63,13 @@ packages=(
   stow
   tmux
   yarn
-  zsh
 )
 
+# Installing packages if they are not installed
+echo "Installing Nix packages..."
+
 for pkg in "${packages[@]}"; do
+
   # Check if the package is already installed
   color=${rainbow_colors[$color_index]}
   if nix-env -q "$pkg" > /dev/null; then
@@ -68,7 +83,13 @@ for pkg in "${packages[@]}"; do
   color_index=$(( (color_index + 1) % ${#rainbow_colors[@]} ))
 done
 
+
+# =================
+# Stow
+# =================
+
 # Run script that watches and auto-stows every folder in .dotfiles/ 
+echo "Running script to automatically stow config files"
 nohup bash ~/.dotfiles/scripts/watch_dotfiles.sh &>/dev/null &
 
 # stow git
@@ -76,28 +97,110 @@ nohup bash ~/.dotfiles/scripts/watch_dotfiles.sh &>/dev/null &
 # stow helix
 # stow alacritty
 
-# add zsh to valid login shells
-command -v zsh | sudo tee -a /etc/shells
 
-# use zsh as default shell
-sudo chsh -s $(which zsh) $USER
+# =================
+# Fish
+# =================
 
-# bundle zsh plugins
-antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+# Get the current default shell
+current_shell=$(getent passwd $USER | cut -d: -f7)
 
-# install nerd fonts
-mkdir -p ~/.local/share/fonts
-cd ~/.local/share/fonts && curl -fLo "Ubuntu Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
+# Get the Fish shell path
+fish_path=$(which fish)
 
-# Configure npm to install in ~/.npm-global, instead of nix folder
-mkdir -p ~/.npm-global
-mkdir -p ~/.npm-global/lib
-mkdir -p ~/.npm-global/bin
-npm config set prefix '~/.npm-global'
-export PATH=~/.npm-global/bin:$PATH
+# Check if Fish is already the default shell
+if [ "$current_shell" != "$fish_path" ]; then
+    echo "Setting Fish as the default shell..."
 
-# Install alacritty themes switcher (use `at` in CLI to change)
-npm i -g alacritty-themes
+    # Add Fish to valid login shells if it's not there already
+    if ! grep -q "^$fish_path$" /etc/shells; then
+        echo "Adding Fish to valid login shells..."
+        command -v fish | sudo tee -a /etc/shells
+    fi
 
-# Login to github
-gh auth login
+    # Use Fish as the default shell
+    sudo chsh -s "$fish_path" $USER
+    echo "Fish is now the default shell."
+else
+    echo "Fish is already the default shell."
+fi
+
+
+# =================
+# Nerd-Fonts
+# =================
+
+font_directory="$HOME/.local/share/fonts"
+font_file="Ubuntu Mono Nerd Font Complete.ttf"
+font_url="https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf"
+
+# Check if the font is already installed
+if [ ! -f "${font_directory}/${font_file}" ]; then
+    echo "Installing Ubuntu Mono Nerd Font Complete..."
+
+    # Download and install the font
+    mkdir -p "$font_directory"
+    cd "$font_directory" && curl -fLo "$font_file" "$font_url"
+
+    # Update the font cache
+    fc-cache -f -v
+
+    echo "Ubuntu Mono Nerd Font Complete installed."
+else
+    echo "Ubuntu Mono Nerd Font Complete is already installed."
+fi
+
+
+# =================
+# NPM
+# =================
+
+desired_npm_prefix="$HOME/.npm-global"
+
+# Check the current NPM prefix
+current_npm_prefix=$(npm config get prefix)
+
+# Run the script only if the desired NPM prefix is not set
+if [ "$current_npm_prefix" != "$desired_npm_prefix" ]; then
+    echo "Configuring NPM to use the desired prefix..."
+
+    # Configure NPM to install in ~/.npm-global, instead of the default folder
+    mkdir -p "$desired_npm_prefix"/{lib,bin}
+    npm config set prefix "$desired_npm_prefix"
+
+    # Add the new NPM prefix to the PATH
+    export PATH="$desired_npm_prefix/bin:$PATH"
+    echo "NPM configured to use the desired prefix."
+else
+    echo "NPM is already configured with the desired prefix."
+fi
+
+# =================
+# Alacritty themes switcher
+# =================
+
+# Check if alacritty-themes is already installed
+if ! command -v alacritty-themes &> /dev/null; then
+    echo "Installing alacritty-themes switcher..."
+
+    # Install alacritty themes switcher
+    npm i -g alacritty-themes
+
+    echo "alacritty-themes switcher installed. Use 'at' in CLI to change themes."
+else
+    echo "alacritty-themes switcher is already installed."
+fi
+
+# =================
+# GitHub Login
+# =================
+
+# Check if the user is already logged into GitHub
+github_token=$(git config --global --get github.oauth-token)
+
+if [ -z "$github_token" ]; then
+    echo "Not logged into GitHub. Running 'gh auth login'..."
+    gh auth login
+else
+    echo "Already logged into GitHub."
+fi
