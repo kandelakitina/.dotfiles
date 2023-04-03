@@ -20,7 +20,7 @@ function folder
     cd $argv[1]
 end
 
-alias rm='trashy'
+alias rm='trash'
 # alias restore='trash list | fzf --multi | awk '{$1=$1;print}' | rev | cut -d ' ' -f1 | rev | xargs trash restore --match=exact --force'
 
 # Clean NVIM Cach

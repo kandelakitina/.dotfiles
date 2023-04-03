@@ -57,6 +57,7 @@ packages=(
   [gh]=gh
   [git]=git
   [exa]=exa
+  [jrnl]=jrnl
   [helix]=helix
   [inotify-tools]=inotify-tools
   [lazygit]=lazygit
