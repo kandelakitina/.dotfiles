@@ -1,3 +1,7 @@
 # Launch alacritty
 super + Return
 	alacritty
+
+# Launch firefox
+super + b
+	firefox
