@@ -66,6 +66,7 @@ packages=(
   [ripgrep]=ripgrep
   [starship]=starship
   [stow]=stow
+  [sxhkd]=sxhkd
   [trashy]=trashy
   [tmux]=tmux
   [yarn]=yarn
