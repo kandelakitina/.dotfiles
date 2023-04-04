@@ -16,14 +16,13 @@ author = "boticelli"
 # MARKDOWN SETTINGS
 [format.markdown]
 hashtags = true
-
+link-format = "wiki"
 
 # EXTERNAL TOOLS
 [tool]
 
 # Command used to preview a note during interactive fzf mode.
 fzf-preview = "bat -p --color always {-1}"
-
 
 # COMMAND ALIASES
 [alias]
