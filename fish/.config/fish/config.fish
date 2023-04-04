@@ -94,3 +94,6 @@ if not set -q FISHER_LOOP_PREVENTION; and not test -f $HOME/.config/fish/functio
     # Unset the loop prevention variable
     set -e FISHER_LOOP_PREVENTION
 end
+
+# zk
+set -gx ZK_NOTEBOOK_DIR ~/MyNotes
