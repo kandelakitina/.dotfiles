@@ -73,6 +73,8 @@ packages=(
   [xmodmap]=xorg.xmodmap
 )
 
+echo -e "\nInstalling Nix packages"
+
 # Installing packages if they are not installed
 printf "%s\n" "${!packages[@]}" | sort | while read -r pkg_name; do
   pkg_attr_path="${packages[$pkg_name]}"
@@ -132,6 +134,25 @@ else
     echo -e "\nFish is already the default shell."
 fi
 
+# =================
+# Fisher plugins
+# =================
+
+echo -e "\nInstalling Fisher plugins"
+color=${rainbow_colors[$color_index]}
+
+# Check if jethrokuan/z plugin is already installed
+color=${rainbow_colors[$color_index]}
+
+# z (folder jumping based on 'freceny')
+fish -c 'fisher list | grep -q "jethrokuan/z"'
+if [ $? -eq 0 ]; then
+  echo -e "${color}jethrokuan/z\033[0m plugin is already installed."
+else
+  echo -e "Installing ${color}jethrokuan/z\033[0m plugin"
+  fish -c 'fisher install jethrokuan/z'
+fi
+color_index=$(( (color_index + 1) % ${#rainbow_colors[@]} ))
 
 # =================
 # Nerd-Fonts
