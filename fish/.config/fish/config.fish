@@ -1,14 +1,24 @@
 # starship prompt
 starship init fish | source
 
-# fzf keybindings
+# fzf 
 function fish_user_key_bindings
   if command -s fzf-share >/dev/null
     source (fzf-share)/key-bindings.fish
   end
-
   fzf_key_bindings
 end
+
+set -gx FZF_DEFAULT_OPTS '--height 40% --layout=reverse --multi --bind ctrl-h:preview-page-up,ctrl-l:preview-page-down'
+
+set -gx FZF_CTRL_T_COMMAND 'rg --files --hidden $HOME'
+set -gx FZF_CTRL_T_OPTS '--preview="bat --color=always --style=numbers --line-range=:500 {}" '
+
+set -gx FZF_CTRL_R_OPTS ''
+
+set -gx FZF_ALT_C_COMMAND 'find . -maxdepth 1 -type d'
+set -gx FZF_ALT_C_OPTS "--preview 'tree -C {} | head -100'"
+
 
 # fff file browser
 function f

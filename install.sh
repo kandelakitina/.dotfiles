@@ -68,6 +68,7 @@ packages=(
   [stow]=stow
   [sxhkd]=sxhkd
   [trashy]=trashy
+  [tree]=tree
   [tmux]=tmux
   [yarn]=yarn
   [xmodmap]=xorg.xmodmap
