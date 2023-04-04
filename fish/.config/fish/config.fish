@@ -14,6 +14,7 @@ alias la='exa -F -a'
 alias ll='exa -F -l --no-user -s type'
 alias lt='exa --tree'
 alias mkdir='mkdir -p'
+alias .df='cd ~/.dotfiles/'
 
 function folder
     mkdir -p $argv[1]

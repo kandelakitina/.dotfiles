@@ -212,4 +212,3 @@ if [ $auth_status -ne 0 ]; then
 else
     echo -e "\nAlready logged into GitHub."
 fi
-
