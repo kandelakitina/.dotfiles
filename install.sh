@@ -139,7 +139,7 @@ fi
 # Fisher plugins
 # =================
 
-echo -e "\nInstalling Fisher plugins"
+echo -e "\nInstalling Fisher plugins\n"
 color=${rainbow_colors[$color_index]}
 
 # Check if jethrokuan/z plugin is already installed
