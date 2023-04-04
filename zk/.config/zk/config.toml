@@ -1,0 +1,39 @@
+# NOTE SETTINGS
+[note]
+
+# The default title used for new note, if no `--title` flag is provided.
+default-title = "{{id}}-Untitled"
+
+# Template used to generate a note's filename, without extension.
+filename = "{{id}}-{{slug title}}"
+
+# EXTRA SETTINGS
+[extra]
+author = "boticelli"
+
+# MARKDOWN SETTINGS
+[format.markdown]
+hashtags = true
+
+
+# EXTERNAL TOOLS
+[tool]
+
+# Command used to preview a note during interactive fzf mode.
+fzf-preview = "bat -p --color always {-1}"
+
+
+# COMMAND ALIASES
+[alias]
+
+# Edit the last modified note.
+last = "zk edit --limit 1 --sort modified- $argv"
+
+# LSP (EDITOR INTEGRATION)
+[lsp]
+
+[lsp.diagnostics]
+# Report titles of wiki-links as hints.
+wiki-title = "hint"
+# Warn for dead links between notes.
+dead-link = "error"

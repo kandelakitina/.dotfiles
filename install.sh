@@ -72,6 +72,7 @@ packages=(
   [tmux]=tmux
   [yarn]=yarn
   [xmodmap]=xorg.xmodmap
+  [zk]=zk
 )
 
 echo -e "\nInstalling Nix packages"
