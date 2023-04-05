@@ -96,4 +96,4 @@ if not set -q FISHER_LOOP_PREVENTION; and not test -f $HOME/.config/fish/functio
 end
 
 # zk
-set -gx ZK_NOTEBOOK_DIR ~/MyNotes
+set -gx ZK_NOTEBOOK_DIR ~/Constellation
