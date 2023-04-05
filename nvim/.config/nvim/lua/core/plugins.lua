@@ -35,6 +35,9 @@ return require("packer").startup(function(use)
 	})
 	use("airblade/vim-rooter") -- autochange project root if there's git
 
+	-- zk lsp plugin
+	use("mickael-menu/zk-nvim")
+
 	-- Windows picker
 	use({
 		"s1n7ax/nvim-window-picker",
