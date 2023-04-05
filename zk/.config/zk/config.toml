@@ -7,7 +7,7 @@ template = "yaml_tags.md"
 default-title = "{{id}}-Untitled"
 
 # Template used to generate a note's filename, without extension.
-filename = "{{slug title}}_{{format-date now}}"
+filename = "{{id}}-{{slug title}}"
 
 # EXTRA SETTINGS
 [extra]
