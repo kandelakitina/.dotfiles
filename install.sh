@@ -99,9 +99,10 @@ done
 # Stow
 # =================
 
+# This is moved to config.fish
 # Run script that watches and auto-stows every folder in .dotfiles/ 
-echo -e "\nRunning script to automatically stow config files"
-nohup bash ~/.dotfiles/scripts/watch_dotfiles.sh &>/dev/null &
+# echo -e "\nRunning script to automatically stow config files"
+# nohup bash ~/.dotfiles/scripts/watch_dotfiles.sh &>/dev/null &
 
 # stow git
 # stow nvim
