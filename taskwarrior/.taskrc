@@ -2,11 +2,11 @@
 data.location=~/Constellation/Tasks
 
 # Contexts
-context.work.read=+work
-context.work.write=+work
+context.work.read=+@office
+context.work.write=+@office
 
-context.coding.read=+coding
-context.coding.write=+coding
+context.coding.read=+@home
+context.coding.write=+@home
 
 # Reporting
 report.in.columns           = id,description
