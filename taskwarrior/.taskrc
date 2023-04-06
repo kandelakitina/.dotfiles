@@ -15,4 +15,3 @@ report.in.filter            = status:pending +in limit:page
 report.in.labels            = ID,Description
 
 news.version=2.6.0
-confirmation=off
