@@ -104,3 +104,6 @@ end
 
 # zk
 set -gx ZK_NOTEBOOK_DIR ~/Constellation
+
+# taskwarrior
+alias in='task add +in'
