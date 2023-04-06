@@ -26,6 +26,11 @@ set -gx FZF_CTRL_R_OPTS ''
 set -gx FZF_ALT_C_COMMAND 'find . -maxdepth 1 -type d'
 set -gx FZF_ALT_C_OPTS "--preview 'tree -C {} | head -100'"
 
+# Nix Package Manager
+function nix-remove
+    nix-env -q | fzf | xargs nix-env -e
+end
+
 
 # fff file browser
 function f
