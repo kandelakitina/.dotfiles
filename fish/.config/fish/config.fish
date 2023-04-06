@@ -116,3 +116,5 @@ end
 
 alias tick=tickle
 alias think='tickle +1d'
+alias rnd='task add +rnd +@home'
+
