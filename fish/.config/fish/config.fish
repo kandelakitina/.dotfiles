@@ -118,3 +118,34 @@ alias tick=tickle
 alias think='tickle +1d'
 alias rnd='task add +rnd +@home'
 
+# Read and review alias
+# function webpage_title
+#     wget -qO- $argv | grep -o '<title>.*</title>' | sed -e 's/<title>//g' -e 's/<\/title>//g'
+# end
+
+# function read_and_review
+#     set link $argv[1]
+#     set title (webpage_title $link)
+#     echo $title
+#     set descr "\"Read and review: $title\""
+#     set id (task add +next +rnr $descr | sed -n 's/Created task \(.*\)\./\1/p')
+#     task $id annotate $link
+# end
+
+# alias rnr=read_and_review
+function webpage_domain
+    set url $argv[1]
+    set domain (echo $url | sed -n 's|.*//\([^/]*\).*|\1|p')
+    echo $domain
+end
+
+function read_and_review
+    set link $argv[1]
+    set domain (webpage_domain $link)
+    echo $domain
+    set descr "Read and review: $domain"
+    set id (task add +next +rnr "$descr" | sed -n 's/Created task \(.*\)./\\1/p')
+    task "$id" annotate "$link"
+end
+
+alias rnr read_and_review
