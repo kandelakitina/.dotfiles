@@ -139,3 +139,6 @@ function read_and_review
 end
 
 alias toread="read_and_review"
+
+# Final toast
+set fish_greeting (echo -e "\e[38;5;196m┏(-_-)┛\e[38;5;27m┗(-_-)┓\e[38;5;226m┗(-_-)┛\e[38;5;118m┏(-_-)┓\e[0m")
