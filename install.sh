@@ -57,6 +57,7 @@ packages=(
   [gh]=gh
   [git]=git
   [exa]=exa
+  [html-xml-utils]=html-xml-utils
   [jrnl]=jrnl
   [helix]=helix
   [inotify-tools]=inotify-tools
