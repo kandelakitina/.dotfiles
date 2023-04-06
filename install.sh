@@ -63,6 +63,7 @@ packages=(
   [lazygit]=lazygit
   [neovim]=neovim
   [nodejs]=nodejs
+  [python3]=python39
   [python3.9-pip]=python39Packages.pip
   [ripgrep]=ripgrep
   [starship]=starship
@@ -86,7 +87,7 @@ printf "%s\n" "${!packages[@]}" | sort | while read -r pkg_name; do
 
   # Check if the package is already installed
   color=${rainbow_colors[$color_index]}
-  nix-env -q "$pkg_name" > /dev/null 2>&1
+  nix-env -q "${pkg_name}*" > /dev/null 2>&1
   if [ $? -eq 0 ]; then
     echo -e "${color}$pkg_name\033[0m is already installed."
   else
