@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # =================
 # Nix Package manager
 # =================
@@ -77,6 +76,7 @@ packages=(
   [tmux]=tmux
   [yarn]=yarn
   [xmodmap]=xorg.xmodmap
+  [zoxide]=zoxide
   [zk]=zk
 )
 
@@ -142,25 +142,25 @@ else
     echo -e "\nFish is already the default shell."
 fi
 
-# =================
-# Fisher plugins
-# =================
+## =================
+## Fisher plugins
+## =================
 
-echo -e "\nInstalling Fisher plugins\n"
-color=${rainbow_colors[$color_index]}
+# echo -e "\nInstalling Fisher plugins\n"
+# color=${rainbow_colors[$color_index]}
 
-# Check if jethrokuan/z plugin is already installed
-color=${rainbow_colors[$color_index]}
+# # Check if jethrokuan/z plugin is already installed
+# color=${rainbow_colors[$color_index]}
 
-# z (folder jumping based on 'freceny')
-fish -c 'fisher list | grep -q "jethrokuan/z"'
-if [ $? -eq 0 ]; then
-  echo -e "${color}jethrokuan/z\033[0m plugin is already installed."
-else
-  echo -e "Installing ${color}jethrokuan/z\033[0m plugin"
-  fish -c 'fisher install jethrokuan/z'
-fi
-color_index=$(( (color_index + 1) % ${#rainbow_colors[@]} ))
+# # z (folder jumping based on 'freceny')
+# fish -c 'fisher list | grep -q "jethrokuan/z"'
+# if [ $? -eq 0 ]; then
+#   echo -e "${color}jethrokuan/z\033[0m plugin is already installed."
+# else
+#   echo -e "Installing ${color}jethrokuan/z\033[0m plugin"
+#   fish -c 'fisher install jethrokuan/z'
+# fi
+# color_index=$(( (color_index + 1) % ${#rainbow_colors[@]} ))
 
 # =================
 # Nerd-Fonts

@@ -53,7 +53,10 @@ function folder
 end
 
 alias rm='trash'
-# alias restore='trash list | fzf --multi | awk '{$1=$1;print}' | rev | cut -d ' ' -f1 | rev | xargs trash restore --match=exact --force'
+function restore
+    trash list | fzf --multi | awk '{$1=$1;print}' | rev | cut -d ' ' -f1 | rev | xargs trash restore --match=exact --force
+end
+
 
 # Clean NVIM Cach
 alias nvim-clean-cache='rm ~/.local/share/nvim/packer_compiled.lua && rm -rf ~/.cache/nvim && rm -rf ~/.local/site/nvim && rm -rf ~/.local/share/nvim && rm -rf ~/.cache/nvim'
@@ -92,20 +95,23 @@ function dclear
     docker volume prune -f
 end
 
-# Fisher
-# Check if Fisher is installed and the loop prevention variable is not set
-if not set -q FISHER_LOOP_PREVENTION; and not test -f $HOME/.config/fish/functions/fisher.fish
-    # Set a temporary loop prevention variable
-    set -gx FISHER_LOOP_PREVENTION 1
+# # Fisher
+# # Check if Fisher is installed and the loop prevention variable is not set
+# if not set -q FISHER_LOOP_PREVENTION; and not test -f $HOME/.config/fish/functions/fisher.fish
+#     # Set a temporary loop prevention variable
+#     set -gx FISHER_LOOP_PREVENTION 1
 
-    # Install Fisher
-    echo "Installing Fisher plugin manager for fish shell"
-    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-    echo "Fisher installed successfully."
+#     # Install Fisher
+#     echo "Installing Fisher plugin manager for fish shell"
+#     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+#     echo "Fisher installed successfully."
 
-    # Unset the loop prevention variable
-    set -e FISHER_LOOP_PREVENTION
-end
+#     # Unset the loop prevention variable
+#     set -e FISHER_LOOP_PREVENTION
+# end
+
+# zoxide folder jumper
+zoxide init fish | source
 
 # zk
 set -gx ZK_NOTEBOOK_DIR ~/Constellation
