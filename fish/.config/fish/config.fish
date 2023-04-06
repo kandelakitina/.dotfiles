@@ -112,6 +112,7 @@ set -gx ZK_NOTEBOOK_DIR ~/Constellation
 
 # taskwarrior
 alias in='task add +in'
+alias tt='taskwarrior-tui'
 
 function tickle
     set deadline $argv[1]
