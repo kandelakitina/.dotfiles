@@ -75,6 +75,7 @@ packages=(
   [tree]=tree
   [tmux]=tmux
   [yarn]=yarn
+  [urlview]=urlview
   [xmodmap]=xorg.xmodmap
   [zoxide]=zoxide
   [zk]=zk
