@@ -146,5 +146,14 @@ end
 
 alias toread="read_and_review"
 
+# tmux
+
+# ~/.tmux/plugins
+fish_add_path $HOME/.tmux/plugins/t-smart-tmux-session-manager/bin
+
+# ~/.config/tmux/plugins
+fish_add_path $HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin
+
+
 # Final toast
 set fish_greeting (echo -e "\e[38;5;196m┏(-_-)┛\e[38;5;27m┗(-_-)┓\e[38;5;226m┗(-_-)┛\e[38;5;118m┏(-_-)┓\e[0m")
