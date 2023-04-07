@@ -3,6 +3,9 @@ font:
     family: UbuntuMono Nerd Font
   size: 15
 
+env:
+  TERM: xterm-256color
+
 colors:
   # Default colors
   primary:
