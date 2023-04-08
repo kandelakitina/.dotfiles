@@ -1,8 +1,16 @@
 theme = "ayu_dark"
 
 [keys.normal]
+# Move lines up and down
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+# Add blank lines up and down
+A-j = ["open_below", "move_line_up", "normal_mode"]
+A-k = ["open_above", "move_line_down", "normal_mode"]
+
+# Delete to the end of the line
+D = ["kill_to_line_end"]
 
 [editor.cursor-shape]
 insert = "bar"
