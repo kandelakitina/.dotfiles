@@ -63,6 +63,9 @@ packages=(
   [lazygit]=lazygit
   [neovim]=neovim
   [nodejs]=nodejs
+  
+  # LSPs
+  [bash-language-server]=nodePackages.bash-language-server
   [marksman]=marksman
   [yaml-language-server]=nodePackages.yaml-language-server
   [vscode-langservers-extracted]=nodePackages.vscode-langservers-extracted
@@ -70,6 +73,7 @@ packages=(
   # [python3]=python311
   # [python3.11-pip]=python311Packages.pip
   # [python3.11-python-lsp-server]=python311Packages.python-lsp-server
+  
   [ripgrep]=ripgrep
   [starship]=starship
   [stow]=stow
