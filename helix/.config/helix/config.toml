@@ -1,4 +1,4 @@
-theme = "ayu_dark"
+theme = "dracula_at_night"
 
 [keys.normal]
 # Move lines up and down
