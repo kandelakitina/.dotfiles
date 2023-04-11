@@ -154,6 +154,7 @@ fish_add_path $HOME/.tmux/plugins/t-smart-tmux-session-manager/bin
 # ~/.config/tmux/plugins
 fish_add_path $HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin
 
+alias tmux-command 'tmux (tmux list-commands | awk \'{print $1}\' | fzf)'
 
 # Final toast
 set fish_greeting (echo -e "\e[38;5;196m┏(-_-)┛\e[38;5;27m┗(-_-)┓\e[38;5;226m┗(-_-)┛\e[38;5;118m┏(-_-)┓\e[0m")
